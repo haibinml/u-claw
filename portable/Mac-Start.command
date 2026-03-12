@@ -106,12 +106,7 @@ if [ ! -d "$CORE_DIR/node_modules" ]; then
     echo ""
 fi
 
-if [ ! -d "$CORE_DIR/dist" ]; then
-    echo -e "  ${YELLOW}First run - building...${NC}"
-    cd "$CORE_DIR"
-    "$NODE_BIN" "$NODE_DIR/bin/npm" run build 2>&1
-    echo ""
-fi
+# OpenClaw doesn't need a separate build step when installed via npm
 
 # ---- 8. Find available port ----
 PORT=18789
@@ -146,7 +141,8 @@ cd "$CORE_DIR"
 
 TOKEN=$(python3 -c "import json,os; p='$STATE_DIR/openclaw.json' if os.path.exists('$STATE_DIR/openclaw.json') else '$DATA_DIR/config.json'; d=json.load(open(p)); print(d.get('gateway',{}).get('auth',{}).get('token','uclaw'))" 2>/dev/null || echo "uclaw")
 
-"$NODE_BIN" openclaw.mjs gateway run --allow-unconfigured --force --port $PORT &
+OPENCLAW_MJS="$CORE_DIR/node_modules/openclaw/openclaw.mjs"
+"$NODE_BIN" "$OPENCLAW_MJS" gateway run --allow-unconfigured --force --port $PORT &
 GW_PID=$!
 
 # ---- 10. Wait & open browser ----

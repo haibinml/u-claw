@@ -35,9 +35,11 @@ if xattr -l "$NODE_BIN" 2>/dev/null | grep -q "com.apple.quarantine"; then
 fi
 
 # Run openclaw command
+OPENCLAW_MJS="$CORE_DIR/node_modules/openclaw/openclaw.mjs"
+
 run_oc() {
     cd "$CORE_DIR"
-    "$NODE_BIN" openclaw.mjs "$@"
+    "$NODE_BIN" "$OPENCLAW_MJS" "$@"
 }
 
 # Show menu
@@ -110,7 +112,7 @@ do_dashboard() {
 
     local TOKEN=$(python3 -c "import json,os; p='$CONFIG_PATH'; d=json.load(open(p)) if os.path.exists(p) else {}; print(d.get('gateway',{}).get('auth',{}).get('token','uclaw'))" 2>/dev/null || echo "uclaw")
 
-    "$NODE_BIN" openclaw.mjs gateway run --allow-unconfigured --force --port $PORT &
+    "$NODE_BIN" "$OPENCLAW_MJS" gateway run --allow-unconfigured --force --port $PORT &
     local PID=$!
 
     for i in $(seq 1 30); do
