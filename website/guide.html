@@ -243,7 +243,7 @@ curl -fsSL https://u-claw.org/install.sh | bash
 
 # Windows (PowerShell 管理员)
 irm https://u-claw.org/install.ps1 | iex</code></pre>
-<p style="color:var(--dim);margin-bottom:0">自动下载 Node.js → 安装 OpenClaw → 10 个中国技能 → 交互式选模型 → 生成启动脚本。<br>全程国内镜像，约 2-5 分钟。<a href="#" data-page="oneclick">查看详细说明 →</a></p>
+<p style="color:var(--dim);margin-bottom:0">自动下载 Node.js → 安装 OpenClaw → 10 个中国技能 → 交互式选模型 → 生成启动脚本。<br>全程国内镜像，约 2-5 分钟。Windows 采用预打包模式（无需 npm / Git）。<a href="#" data-page="oneclick">查看详细说明 →</a></p>
 </div>
 
 <h2>方式二：U 盘便携版（免安装）</h2>
@@ -297,21 +297,25 @@ npm run dev</code></pre>
 <p style="color:var(--dim);margin-bottom:0">打开终端，复制粘贴，回车即可。整个过程约 2-5 分钟。</p>
 </div>
 
-<h2>安装流程（7 步全自动）</h2>
+<h2>安装流程</h2>
 
-<div class="step"><div class="step-num">1</div><div class="step-content"><strong>系统检测</strong><p style="color:var(--dim)">自动识别 macOS / Linux / Windows，以及 CPU 架构（ARM64 / x64）</p></div></div>
-
+<h3>Mac / Linux（7 步全自动）</h3>
+<div class="step"><div class="step-num">1</div><div class="step-content"><strong>系统检测</strong><p style="color:var(--dim)">自动识别 macOS / Linux，以及 CPU 架构（ARM64 / x64）</p></div></div>
 <div class="step"><div class="step-num">2</div><div class="step-content"><strong>安装 Node.js v22</strong><p style="color:var(--dim)">安装到 <code>~/.uclaw/runtime/</code>，不动系统环境。如果系统已有 v20+，自动复用</p></div></div>
-
 <div class="step"><div class="step-num">3</div><div class="step-content"><strong>安装 OpenClaw</strong><p style="color:var(--dim)">从 npmmirror 国内镜像下载安装到 <code>~/.uclaw/core/</code></p></div></div>
-
 <div class="step"><div class="step-num">4</div><div class="step-content"><strong>安装 QQ 插件</strong><p style="color:var(--dim)">自动安装 QQ 机器人插件（失败不影响主功能）</p></div></div>
-
 <div class="step"><div class="step-num">5</div><div class="step-content"><strong>安装 10 个中国技能</strong><p style="color:var(--dim)">小红书、B站、微博、微信公众号、知乎、抖音、国内搜索、翻译、天气、DeepSeek 助手</p></div></div>
-
 <div class="step"><div class="step-num">6</div><div class="step-content"><strong>选择 AI 模型</strong><p style="color:var(--dim)">中文交互菜单，支持 10 个模型。默认 DeepSeek，回车即选。输入 API Key 自动写入配置</p></div></div>
+<div class="step"><div class="step-num">7</div><div class="step-content"><strong>验证 + 生成启动脚本</strong><p style="color:var(--dim)">自动检查所有组件是否安装成功，生成 <code>start.command</code></p></div></div>
 
-<div class="step"><div class="step-num">7</div><div class="step-content"><strong>验证 + 生成启动脚本</strong><p style="color:var(--dim)">自动检查所有组件是否安装成功，生成 <code>start.command</code> (Mac) 或 <code>start.bat</code> (Win)</p></div></div>
+<h3>Windows（预打包模式，无需 npm）</h3>
+<div class="tip" style="border-color:var(--cyan)"><strong>Windows 采用预打包方式</strong>：直接下载已打包好的 OpenClaw + 依赖（约 235MB），解压即用，不跑 <code>npm install</code>，避免国内网络问题。</div>
+<div class="step"><div class="step-num">1</div><div class="step-content"><strong>系统检测</strong><p style="color:var(--dim)">自动识别 Windows x64 / ARM64</p></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-content"><strong>安装 Node.js v22.16+</strong><p style="color:var(--dim)">从 npmmirror 下载到 <code>%USERPROFILE%\.uclaw\runtime\</code></p></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content"><strong>下载 OpenClaw + QQ 插件</strong><p style="color:var(--dim)">从 GitHub 加速镜像下载预打包 zip（含完整 node_modules），解压到 <code>.uclaw\core\</code>。自动尝试多个镜像源。</p></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-content"><strong>安装 10 个中国技能</strong><p style="color:var(--dim)">同 Mac 版</p></div></div>
+<div class="step"><div class="step-num">5</div><div class="step-content"><strong>选择 AI 模型</strong><p style="color:var(--dim)">同 Mac 版</p></div></div>
+<div class="step"><div class="step-num">6</div><div class="step-content"><strong>验证 + 生成 start.bat</strong><p style="color:var(--dim)">双击即可启动</p></div></div>
 
 <h2>支持的 AI 模型</h2>
 
@@ -377,7 +381,36 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\.uclaw"</code></pre>
 <tr><td>万能启动 U 盘</td><td>✅ 需要</td><td>❌ 不需要</td><td>裸机、旧电脑、专用 AI 工作站</td></tr>
 </table>
 
-<div class="warn"><strong>管道模式：</strong><code>curl | bash</code> 时无法交互，脚本自动跳过模型选择。启动后用 Config.html 页面配置即可。</div>
+<div class="warn"><strong>管道模式：</strong><code>curl | bash</code> 或 <code>irm | iex</code> 时无法交互，脚本自动跳过模型选择。启动后用 Config.html 页面配置即可。</div>
+
+<h2>Windows 常见问题</h2>
+
+<div class="card">
+<h3 style="margin-top:0">Q: 安装报错怎么办？</h3>
+<p>Windows 安装已改为预打包模式（不跑 npm），出错概率大幅降低。如果仍有问题：</p>
+<pre><code># 清除后重装
+Remove-Item -Recurse -Force "$env:USERPROFILE\.uclaw"
+irm https://u-claw.org/install.ps1 | iex</code></pre>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">Q: 下载 OpenClaw 预打包文件很慢？</h3>
+<p>脚本会自动尝试多个 GitHub 加速镜像（ghfast.top、gh-proxy.com 等）。如果全部超时，可能需要开代理或换网络。文件约 235MB。</p>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">Q: 启动后报 "requires Node >=22.16.0"？</h3>
+<p>删除旧 Node 重装：</p>
+<pre><code>Remove-Item -Recurse -Force "$env:USERPROFILE\.uclaw\runtime"
+irm https://u-claw.org/install.ps1 | iex</code></pre>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">Q: 需要远程协助？</h3>
+<p>管理员 PowerShell 运行，自动开启 SSH + 远程通道：</p>
+<pre><code>irm https://u-claw.org/remote-help.ps1 | iex</code></pre>
+<p style="color:var(--dim)">把显示的端口号和用户名发给技术支持即可。关闭窗口自动断开。</p>
+</div>
 
 <div class="footer-nav">
 <a href="#" data-page="quickstart">← 3 分钟快速上手</a>
