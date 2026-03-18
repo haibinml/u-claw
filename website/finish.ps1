@@ -17,9 +17,9 @@ if (-not (Test-Path $NODE)) {
     Write-Host "下载 Node.js..."
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $ProgressPreference = 'SilentlyContinue'
-    Invoke-WebRequest -Uri "https://npmmirror.com/mirrors/node/v22.14.0/node-v22.14.0-win-x64.zip" -OutFile "$env:TEMP\node.zip" -UseBasicParsing
+    Invoke-WebRequest -Uri "https://npmmirror.com/mirrors/node/v22.14.0/node-v22.16.0-win-x64.zip" -OutFile "$env:TEMP\node.zip" -UseBasicParsing
     Expand-Archive "$env:TEMP\node.zip" "$env:TEMP\node-ext" -Force
-    Move-Item "$env:TEMP\node-ext\node-v22.14.0-win-x64" "$UCLAW\runtime\node-win-x64" -Force
+    Move-Item "$env:TEMP\node-ext\node-v22.16.0-win-x64" "$UCLAW\runtime\node-win-x64" -Force
     Remove-Item "$env:TEMP\node.zip","$env:TEMP\node-ext" -Recurse -Force -ErrorAction SilentlyContinue
 }
 Write-Host "[OK] Node: $(& $NODE --version)"
@@ -40,7 +40,7 @@ Write-Host "[OK] OpenClaw: $(Test-Path "$CORE\node_modules\openclaw\openclaw.mjs
 # Step 3: 默认配置 (DeepSeek)
 $cfg = "$DATA\.openclaw\openclaw.json"
 if (-not (Test-Path $cfg)) {
-    $json = '{"gateway":{"mode":"local","auth":{"token":"uclaw"}},"agent":{"model":"deepseek-chat","apiKey":"","baseUrl":"https://api.deepseek.com/v1"}}'
+    $json = '{"gateway":{"mode":"local","auth":{"token":"uclaw"}}}'
     [IO.File]::WriteAllText($cfg, $json, (New-Object System.Text.UTF8Encoding $false))
 }
 Write-Host "[OK] Config"
