@@ -161,76 +161,78 @@ if (-not $USE_SYSTEM_NODE) {
 Write-Host ""
 
 # ============================================================
-# Step 3: OpenClaw 安装
+# Step 3: OpenClaw + QQ 插件安装（预打包下载，无需 npm）
 # ============================================================
-Write-Host "  [2/7] 安装 OpenClaw ..." -ForegroundColor White
+Write-Host "  [2/7] 安装 OpenClaw + QQ 插件 ..." -ForegroundColor White
 
 if (Test-Path "$CORE_DIR\node_modules\openclaw") {
     Write-Green "  ✓ OpenClaw 已安装，跳过"
 } else {
-    if (-not (Test-Path "$CORE_DIR\package.json")) {
-        $pkgJson = @'
-{
-  "name": "u-claw-core",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "openclaw": "latest"
-  }
-}
-'@
-        [IO.File]::WriteAllText("$CORE_DIR\package.json", $pkgJson, (New-Object System.Text.UTF8Encoding $false))
+    Write-Cyan "  ↓ 下载预打包文件（免 npm install）..."
+    $BUNDLE_URL = "https://github.com/dongsheng123132/u-claw/releases/download/v1.0.0-bundle/openclaw-bundle.zip"
+    # 国内 GitHub 加速镜像
+    $BUNDLE_MIRRORS = @(
+        "https://ghfast.top/$BUNDLE_URL",
+        "https://gh-proxy.com/$BUNDLE_URL",
+        "https://mirror.ghproxy.com/$BUNDLE_URL",
+        $BUNDLE_URL
+    )
+    $bundleZip = "$env:TEMP\openclaw-bundle.zip"
+    $downloaded = $false
+
+    foreach ($mirrorUrl in $BUNDLE_MIRRORS) {
+        Write-Host "    尝试: $mirrorUrl" -ForegroundColor DarkGray
+        try {
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            $ProgressPreference = 'SilentlyContinue'
+            Invoke-WebRequest -Uri $mirrorUrl -OutFile $bundleZip -UseBasicParsing -TimeoutSec 60
+            if ((Get-Item $bundleZip).Length -gt 1MB) {
+                $downloaded = $true
+                break
+            }
+        } catch {
+            Write-Host "    ↑ 失败，换下一个..." -ForegroundColor DarkGray
+        }
     }
 
-    Write-Cyan "  ↓ 从国内镜像安装..."
-    Write-Host "    node: $INSTALL_NODE" -ForegroundColor DarkGray
-    Write-Host "    npm-cli: $NPM_CLI" -ForegroundColor DarkGray
-    Write-Host "    prefix: $CORE_DIR" -ForegroundColor DarkGray
-    if (-not (Test-Path $NPM_CLI)) {
-        Write-Red "  ✗ npm-cli.js 不存在: $NPM_CLI"
+    if (-not $downloaded) {
+        # 最后尝试 curl
+        Write-Host "    尝试 curl 下载..." -ForegroundColor DarkGray
+        try {
+            & curl.exe -sL "https://ghfast.top/$BUNDLE_URL" -o $bundleZip
+            if ((Get-Item $bundleZip).Length -gt 1MB) { $downloaded = $true }
+        } catch {}
+    }
+
+    if (-not $downloaded) {
+        Write-Red "  ✗ 下载失败！请检查网络"
         exit 1
     }
-    if (-not (Test-Path "$CORE_DIR\package.json")) {
-        Write-Red "  ✗ package.json 不存在: $CORE_DIR\package.json"
-        exit 1
-    }
-    $prevDir = Get-Location
-    Set-Location $CORE_DIR
-    $ErrorActionPreference = "Continue"
-    & $INSTALL_NODE $NPM_CLI install --registry=$MIRROR 2>&1 | Select-Object -Last 5
-    $npmExit = $LASTEXITCODE
-    $ErrorActionPreference = "Stop"
-    Set-Location $prevDir
-    if ($npmExit -ne 0) {
-        Write-Red "  ✗ OpenClaw 安装失败 (exit=$npmExit)，请检查网络"
-        exit 1
-    }
-    Write-Green "  ✓ OpenClaw 安装完成"
-}
 
-Write-Host ""
+    Write-Host "  解压中..." -ForegroundColor Cyan
+    $tempExtract = "$env:TEMP\openclaw-bundle-extract"
+    if (Test-Path $tempExtract) { Remove-Item -Recurse -Force $tempExtract }
+    Expand-Archive -Path $bundleZip -DestinationPath $tempExtract -Force
+    New-Item -ItemType Directory -Force -Path $CORE_DIR | Out-Null
+    Copy-Item -Recurse -Force "$tempExtract\*" $CORE_DIR
 
-# ============================================================
-# Step 4: QQ 插件
-# ============================================================
-Write-Host "  [3/7] 安装 QQ 插件 ..." -ForegroundColor White
+    # 清理
+    Remove-Item -Force $bundleZip -ErrorAction SilentlyContinue
+    Remove-Item -Recurse -Force $tempExtract -ErrorAction SilentlyContinue
 
-if (Test-Path "$CORE_DIR\node_modules\@sliverp\qqbot") {
-    Write-Green "  ✓ QQ 插件已安装，跳过"
-} else {
-    Write-Cyan "  ↓ 安装 QQ 插件..."
-    $prevDir = Get-Location
-    Set-Location $CORE_DIR
-    $ErrorActionPreference = "Continue"
-    & $INSTALL_NODE $NPM_CLI install "@sliverp/qqbot@latest" --registry=$MIRROR 2>&1 | Out-Null
-    $qqExit = $LASTEXITCODE
-    $ErrorActionPreference = "Stop"
-    Set-Location $prevDir
-    if ($qqExit -eq 0) {
-        Write-Green "  ✓ QQ 插件安装完成"
+    if (Test-Path "$CORE_DIR\node_modules\openclaw\openclaw.mjs") {
+        Write-Green "  ✓ OpenClaw 安装完成"
     } else {
-        Write-Yellow "  ⚠ QQ 插件安装失败（不影响主功能）"
+        Write-Red "  ✗ OpenClaw 安装失败"
+        exit 1
     }
+}
+
+# QQ 插件（已包含在预打包中）
+if (Test-Path "$CORE_DIR\node_modules\@sliverp\qqbot") {
+    Write-Green "  ✓ QQ 插件已包含"
+} else {
+    Write-Yellow "  ⚠ QQ 插件未包含（不影响主功能）"
 }
 
 Write-Host ""
