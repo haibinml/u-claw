@@ -12,7 +12,7 @@ CORE_DIR="$SCRIPT_DIR/core"
 RUNTIME_DIR="$SCRIPT_DIR/runtime"
 MIRROR="https://registry.npmmirror.com"
 NODE_MIRROR="https://npmmirror.com/mirrors/node"
-NODE_VERSION="v22.14.0"
+NODE_VERSION="v22.16.0"
 ALL_PLATFORMS=false
 WITH_TOOLKIT=false
 
