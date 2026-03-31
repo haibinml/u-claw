@@ -24,11 +24,17 @@ U-Claw（虾盘）是一个**制作教程 + 全套源代码**，教你把 [OpenC
 
 ---
 
-> ⚠️ **新手提示：** 本仓库为开源 1.0 版本，构建需要一定的技术基础（Node.js / 命令行 / 脚本）和编程工具，不建议零基础用户贸然下载自行折腾。**想省事的话，推荐直接购买商业版（2.0）**，开箱即用，无需折腾。当然，AI 就像自行车——它是工具，不是制造焦虑的理由。没有"来不来得及"，只有早用和晚用。多折腾、多用，就像骑车一样，上手了自然就会了。
+> ⚠️ **新手提示：** 本仓库为开源 1.0 版本，构建需要一定的技术基础（Node.js / 命令行 / 脚本）和编程工具，不建议零基础用户贸然下载自行折腾。**想省事的话，推荐直接购买商业版（2.0）**，开箱即用，无需折腾。当然，AI 就像骑自行车，多折腾多用，上手了自然就会了。
 >
 > 🚀 **2.0 商业版** 是全面升级版，包含 U 盘内运行的**本地模型**（离线可用，无需联网 API），更多端侧 AI 能力持续迭代。我们也在搭建**端侧 AI 落地社区**，致力于成为便携式端侧 AI 的中国领跑者。
 >
 > 🔧 **我们同时在推进端侧 AI 硬件开发**，目标是打造真正属于个人的便携式 AI 助理。这个方向还很早期，但商业机会已经在路上——欢迎**技术极客**加入，一起把端侧 AI 和个人助理 AI 做出来。有想法、有技术、想一起把握机会的，欢迎联系：微信 **hecare888**
+>
+> 💡 **关于这个项目：** 我是产品经理，1个月前借助 AI 协助，针对国内环境打造了 U-Claw 虾盘——全球首个 U 盘形态的 OpenClaw，让 AI 即插即用。目前在快速迭代（也有不少 bug），2.0 正在重构，目标是做成一个真正可用的端侧 AI 产品。
+>
+> 🚀 AI 正在爆发，这是一个很少见的窗口期。与其围观，不如一起下场。
+>
+> 📩 微信：**hecare888**
 
 ---
 
@@ -131,50 +137,6 @@ npm run build:win        # 打包 → release/*.exe
 | MiniMax | 语音多模态 |
 | 豆包 Doubao | 火山引擎 |
 
-**大模型聚合平台**
-
-SophNet，提供DS，GLM，Qwen，MiniMax，Kimi等多家开源大模型，多达50多种，一个API Key可以体验多个顶级大模型。
-
-可以通过https://www.sophnet.com/#?code=4T6VKY注册了解。
-
-**LLM(最新版本)**
-
-| 国内/国外 | 模型厂商 | 模型 | 模型id（对外） | 规格 |
-| ------  |---------|----------|----------|----------|
-| 国内 | 深度求索 | DeepSeek V3.2 Fast | DeepSeek-V3.2-Fast | SophNet独家供给，DeepSeek满血版 TPS 峰值100以上 |
-| 国内 | 深度求索 | DeepSeek V3.2 Exp | DeepSeek-V3.2-Exp | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 深度求索 | DeepSeek V3.2 | DeepSeek-V3.2 | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 深度求索 | DeepSeek R1 | DeepSeek-R1 | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 深度求索 | DeepSeek-R1-Distill-Qwen-7B | DeepSeek-R1-Distill-Qwen-7B | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 深度求索 | DeepSeek-R1-Distill-Qwen-32B | DeepSeek-R1-Distill-Qwen-32B | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | QwQ-32B | QwQ-32B | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | Qwen3.5-397B-A17B | Qwen3.5-397B-A17B | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 月之暗面 | Kimi-K2.5 | Kimi-K2.5-global | 开绿网版本 |
-| 国内 | 月之暗面 | Kimi-k2.5 | Kimi-K2.5 | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 智谱 | GLM-5 | GLM-5 | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | MiniMax | MiniMax-M2.5 | MiniMax-M2.5 | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 字节跳动 | Seed-OSS-36B-Instruct | Seed-OSS-36B-Instruct | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 小米 | MiMo-V2-Flash | MiMo-V2-Flash | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 海外 | openai | GPT-OSS-120B | GPT-OSS-120B | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 美团 | LongCat-Flash-Chat | LongCat-Flash-Chat | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-
-**视觉模型(最新版本)**
-
-| 国内/国外 | 模型厂商 | 模型 | 模型id（对外） | 规格 |
-| ------  |---------|----------|----------|----------|
-| 国内 | 阿里 | Qwen3-VL-235B-A22B-Instruct | Qwen3-VL-235B-A22B-Instruct | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | Qwen2.5-VL-7B-Instruct | Qwen2.5-VL-7B-Instruct | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | Qwen2.5-VL-72B-Instruct | Qwen2.5-VL-72B-Instruct | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | Qwen2.5-VL-32B-Instruct | Qwen2.5-VL-32B-Instruct | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | Qwen2-VL-7B-Instruct | Qwen2-VL-7B-Instruct | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | Qwen2-VL-72B-Instruct | Qwen2-VL-72B-Instruct | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | qwen-image-edit | Qwen-Image-Edit-2509 | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | Qwen-Image | Qwen-Image | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-| 国内 | 阿里 | Z-Image-Turbo | Z-Image-Turbo | SophNet算力供给，性能对标火山阿里，超高并发支持 |
-
-**更多开闭源模型，请Contact: WeChat: hecare888**
-
-
 
 **国际模型：** Claude · GPT · Gemini（需翻墙或中转）
 
@@ -268,11 +230,17 @@ The codebase itself is the USB file skeleton. Run `setup.sh` to download large d
 
 ---
 
-> ⚠️ **Heads up for beginners:** This repo is the open-source 1.0 version. Building it requires technical knowledge (Node.js / CLI / scripting). If you just want something that works out of the box, **we recommend purchasing the commercial 2.0 edition** instead — no setup hassle. That said, AI is like riding a bike — it's a tool, not a source of anxiety. There's no "too late to start", only sooner or later. Tinker with it, use it often, and it'll click before you know it.
+> ⚠️ **Heads up for beginners:** This repo is the open-source 1.0 version. Building it requires technical knowledge (Node.js / CLI / scripting). If you just want something that works out of the box, **we recommend purchasing the commercial 2.0 edition** instead — no setup hassle. That said, AI is like riding a bike — tinker with it and it'll click.
 >
 > 🚀 **Version 2.0 (commercial)** is a major upgrade featuring **on-device local models** that run entirely inside the USB drive — no internet or API key required. We're building an edge AI community in China, aiming to be the leading platform for portable edge AI.
 >
-> 🔧 **We're also working on edge AI hardware** — building a truly personal, portable AI assistant device. It's early days, but real commercial opportunities are emerging. We're looking for **tech enthusiasts and hackers** to join us in making edge AI and personal AI assistants a reality. Interested? WeChat: **hecare888**
+> 🔧 **We're also working on edge AI hardware** — building a truly personal, portable AI assistant device. It's early days, but real commercial opportunities are emerging. We're looking for **tech enthusiasts and hackers** to join us. Interested? WeChat: **hecare888**
+>
+> 💡 **About this project:** I'm a product manager who built U-Claw with AI assistance — the world's first OpenClaw in USB form, purpose-built for China. Still iterating fast (yes, there are bugs). V2.0 is being rebuilt into a truly production-ready edge AI product.
+>
+> 🚀 AI is exploding. This is a rare window. Stop watching — come build with us.
+>
+> 📩 WeChat: **hecare888**
 
 ---
 
