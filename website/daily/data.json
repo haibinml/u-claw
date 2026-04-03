@@ -1,14 +1,14 @@
 {
   "latest": {
-    "date": "2026-04-02",
+    "date": "2026-04-03",
     "tip": {
       "title": {
-        "zh": "一键切换模型：快速找到最佳助手",
-        "en": "One-Click Model Switching: Find Your Best Assistant Fast"
+        "zh": "一键切换模型：快速找到最适合的AI助手",
+        "en": "One-Click Model Switching: Quickly Find the Best AI Assistant"
       },
       "content": {
-        "zh": "在 U-Claw 的对话界面，点击右上角的模型名称（如“DeepSeek”），即可快速下拉选择其他 7 款国产大模型。无需进入复杂设置，就能根据当前任务（如代码、创作、分析）即时切换。例如，写代码时用 DeepSeek，头脑风暴时换 Kimi，让每个模型发挥其专长。",
-        "en": "In the U-Claw chat interface, click the model name (e.g., 'DeepSeek') in the top-right corner to quickly pull down and select from the other 7 domestic LLMs. Switch models instantly for different tasks (coding, creative writing, analysis) without navigating complex settings. For example, use DeepSeek for coding and switch to Kimi for brainstorming, leveraging each model's strengths."
+        "zh": "在U-Claw主界面或聊天窗口中，点击模型名称（如DeepSeek）即可弹出模型选择菜单。无需进入复杂设置，即可在8大国产模型间无缝切换。例如，写代码时可切到智谱GLM，需要长上下文分析时则切换到Kimi。这个快捷操作让你能根据当前任务，灵活调用不同模型的专长，极大提升效率。",
+        "en": "On the U-Claw main interface or in the chat window, click the model name (e.g., DeepSeek) to pop up the model selection menu. You can seamlessly switch between the eight major domestic models without entering complex settings. For instance, switch to Zhipu GLM for coding, and to Kimi for long-context analysis. This shortcut allows you to flexibly leverage the expertise of different models based on your current task, significantly boosting efficiency."
       },
       "tag": {
         "zh": "技巧",
@@ -17,12 +17,12 @@
     },
     "case": {
       "title": {
-        "zh": "离线会议纪要：用 U-Claw 自动总结飞书讨论",
-        "en": "Offline Meeting Minutes: Automatically Summarize Lark Discussions with U-Claw"
+        "zh": "离线环境下的紧急代码调试",
+        "en": "Emergency Code Debugging in an Offline Environment"
       },
       "content": {
-        "zh": "市场团队在飞书上进行了一场关于新品的激烈讨论，产生了大量消息。由于涉及敏感信息，无法使用在线 AI。成员将完整的聊天记录导出为文本文件，在离线环境的 U-Claw 中，使用“文档总结”技能，并选择通义千问模型进行处理。几分钟内，U-Claw 就生成了清晰的观点总结、待办事项列表和争议点，极大提升了会议效率。",
-        "en": "The marketing team had a heated discussion about a new product on Lark, generating a large volume of messages. Due to sensitive information, online AI was not an option. A member exported the full chat history as a text file and used U-Claw's 'Document Summarization' skill offline, selecting the Qwen model. Within minutes, U-Claw produced a clear summary of key points, an action item list, and noted disagreements, significantly improving meeting follow-up efficiency."
+        "zh": "程序员小王在客户现场进行部署，网络突然中断，但一个关键模块报错急需解决。他立即插入U-Claw虾盘，启动离线版的OpenClaw。通过内置的DeepSeek代码技能，他将错误日志和代码片段粘贴给AI。AI快速分析了堆栈信息，指出是一个空指针异常，并给出了具体的修复建议和修改后的代码。小王成功在断网环境下完成了调试，保障了项目进度。",
+        "en": "Programmer Xiao Wang was deploying at a client site when the network suddenly went down, but a critical module reported an error requiring immediate resolution. He promptly inserted the U-Claw USB drive and launched the offline OpenClaw. Using the built-in DeepSeek coding skill, he pasted the error log and code snippets to the AI. The AI quickly analyzed the stack trace, identified a null pointer exception, and provided specific fix suggestions along with corrected code. Xiao Wang successfully completed the debugging in the offline environment, ensuring the project timeline."
       },
       "tag": {
         "zh": "案例",
@@ -30,5 +30,37 @@
       }
     }
   },
-  "history": []
+  "history": [
+    {
+      "date": "2026-04-02",
+      "tip": {
+        "title": {
+          "zh": "一键切换模型：快速找到最佳助手",
+          "en": "One-Click Model Switching: Find Your Best Assistant Fast"
+        },
+        "content": {
+          "zh": "在 U-Claw 的对话界面，点击右上角的模型名称（如“DeepSeek”），即可快速下拉选择其他 7 款国产大模型。无需进入复杂设置，就能根据当前任务（如代码、创作、分析）即时切换。例如，写代码时用 DeepSeek，头脑风暴时换 Kimi，让每个模型发挥其专长。",
+          "en": "In the U-Claw chat interface, click the model name (e.g., 'DeepSeek') in the top-right corner to quickly pull down and select from the other 7 domestic LLMs. Switch models instantly for different tasks (coding, creative writing, analysis) without navigating complex settings. For example, use DeepSeek for coding and switch to Kimi for brainstorming, leveraging each model's strengths."
+        },
+        "tag": {
+          "zh": "技巧",
+          "en": "Tip"
+        }
+      },
+      "case": {
+        "title": {
+          "zh": "离线会议纪要：用 U-Claw 自动总结飞书讨论",
+          "en": "Offline Meeting Minutes: Automatically Summarize Lark Discussions with U-Claw"
+        },
+        "content": {
+          "zh": "市场团队在飞书上进行了一场关于新品的激烈讨论，产生了大量消息。由于涉及敏感信息，无法使用在线 AI。成员将完整的聊天记录导出为文本文件，在离线环境的 U-Claw 中，使用“文档总结”技能，并选择通义千问模型进行处理。几分钟内，U-Claw 就生成了清晰的观点总结、待办事项列表和争议点，极大提升了会议效率。",
+          "en": "The marketing team had a heated discussion about a new product on Lark, generating a large volume of messages. Due to sensitive information, online AI was not an option. A member exported the full chat history as a text file and used U-Claw's 'Document Summarization' skill offline, selecting the Qwen model. Within minutes, U-Claw produced a clear summary of key points, an action item list, and noted disagreements, significantly improving meeting follow-up efficiency."
+        },
+        "tag": {
+          "zh": "案例",
+          "en": "Case"
+        }
+      }
+    }
+  ]
 }
