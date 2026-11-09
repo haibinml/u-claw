@@ -16,9 +16,14 @@ name: Track OpenClaw upstream
 #   - 单一可信源：OPENCLAW_VERSION 是上游 pin，u-claw-app/package.json 是壳版本
 
 on:
-  schedule:
-    # 每天 UTC 01:00（北京时间 09:00）检查一次
-    - cron: '0 1 * * *'
+  # PAUSED 2026-11-09: OpenClaw 2026.11.2 renamed every dist bundle
+  # (chrome-IDR7c0-o.mjs -> chrome-Ck9VaITC.mjs, cli-shim-* , fs-safe now bundled),
+  # so the three vendor patches fail closed and this job would red-light daily.
+  # Re-enable the cron once portable/lib/patch-*.mjs anchors are re-reviewed
+  # for 2026.11.2. Manual runs still work: Actions -> Track OpenClaw upstream -> Run.
+  # schedule:
+  #   # 每天 UTC 01:00（北京时间 09:00）检查一次
+  #   - cron: '0 1 * * *'
   workflow_dispatch:
     inputs:
       force_version:
